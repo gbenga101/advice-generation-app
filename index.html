@@ -2,27 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Advice generator app</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Frontend Mentor | Advice generator app</title>
 </head>
 <body>
 
-  Advice #<!-- Advice ID goes here -->
+  <main class="advice" aria-live="polite">
 
-  "<!-- Advice text goes here -->"
-  
+    <p class="advice_id">
+      Advice #<span id="advice-id">—</span>
+    </p>
+
+    <blockquote class="advice_quote">
+      <p id="advice-text">Click the dice to get your first piece of advice.</p>
+    </blockquote>
+
+    <div class="advice_divider" aria-hidden="true">
+      <picture>
+        <source media="(min-width: 600px)" srcset="images/pattern-divider-desktop.svg">
+        <img src="images/pattern-divider-mobile.svg" alt="">
+      </picture>
+    </div>
+
+    <button class="advice_dice" id="dice-btn" type="button" aria-label="Generate new advice">
+      <img src="images/icon-dice.svg" alt="Dice icon" aria-hidden="true" width="24" height="24">
+    </button>
+
+  </main>
+
   <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend Mentor</a>.
+    Coded by <a href="https://uniquegbenga.netlify.app" target="_blank" rel="noopener">uniqueGbengah</a>.
   </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>

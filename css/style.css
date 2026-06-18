@@ -1,0 +1,167 @@
+:root {
+  --clr-blue-200: hsl(193, 38%, 86%);   /* quote text + divider icon mark */
+  --clr-green-300: hsl(150, 100%, 66%); /* advice number + dice button */
+  --clr-blue-600: hsl(217, 19%, 38%);   /* divider line color (baked into the SVG asset itself) */
+  --clr-blue-900: hsl(217, 19%, 24%);   /* card background */
+  --clr-blue-950: hsl(218, 23%, 16%);   /* page background */
+
+  --ff-base: 'Manrope', sans-serif;
+  --fw-bold: 800; /* style guide only specifies this one weight */
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Body: page layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  background-color: var(--clr-blue-950);
+  font-family: var(--ff-base);
+  font-weight: var(--fw-bold);
+  color: var(--clr-blue-200);
+
+  /* To keeps things breathable at very small (320px) viewports */
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Advice card */
+.advice {
+  position: relative; 
+  width: 100%;
+  max-width: 35.5rem;
+  background-color: var(--clr-blue-900);
+  border-radius: 0.75rem;
+  padding: 2.5rem 1.75rem 3.5rem;
+}
+
+.advice_id {
+  color: var(--clr-green-300);
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.advice_quote {
+  font-size: 1.25rem; 
+  line-height: 1.4;
+}
+
+.advice_quote p {
+  quotes: '\201C' '\201D';
+}
+
+.advice_quote p::before {
+  content: open-quote;
+}
+
+.advice_quote p::after {
+  content: close-quote;
+}
+
+.advice_divider {
+  display: flex;
+  justify-content: center;
+  margin: 1.75rem 0;
+}
+
+/* Dice button */
+.advice_dice {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%); 
+
+  width: 3.4375rem; /* 55px */
+  height: 3.4375rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-green-300);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.advice_dice:hover,
+.advice_dice:focus-visible {
+  background-color: var(--clr-blue-200);
+  box-shadow: 0 0 0 1rem hsla(150, 100%, 66%, 0.15);
+}
+
+.advice_dice:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+
+/* spins briefly while a new advice slip is being fetched */
+.advice_dice.is-loading svg {
+  animation: spin 0.6s linear infinite;
+}
+
+.advice_dice:disabled {
+  cursor: not-allowed;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Attribution  */
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  color: var(--clr-blue-200);
+}
+
+.attribution a {
+  color: var(--clr-green-300);
+}
+
+/* Desktop (1440px design reference) */
+@media (min-width: 600px) {
+  .advice {
+    padding: 3.5rem 4rem 4.5rem;
+  }
+
+  .advice_quote {
+    font-size: 1.75rem; /* 28px per style-guide.md */
+  }
+}
+
+/* Accessibility: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .advice_dice,
+  .advice_dice.is-loading svg {
+    animation: none !important;
+    transition: none !important;
+  }
+}
